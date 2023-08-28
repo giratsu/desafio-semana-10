@@ -9,22 +9,20 @@ const PRODUCTS = [
 document.addEventListener("DOMContentLoaded", function () {
     const productList = document.getElementById("productList");
 
-    for(let i=0; i<PRODUCTS.length; i++)
-    {
-        let product = PRODUCTS[i];
-        let item = document.createElement("li");
-        let link = document.createElement("a");
-        let text = document.createTextNode(product.name);
-        link.appendChild(text);
+    for (const product of PRODUCTS) {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
         link.href = "product-info.html";
-        item.appendChild(link);
-        productList.appendChild(item);
+        link.textContent = product.name;
 
-        link.addEventListener("click", (e) => {
-            localStorage.setItem("productName", product.name);
-            localStorage.setItem("productDescription", product.name);
-        })
-    }
+        link.addEventListener("click", function () {
+            localStorage.setItem("ProdID", product.id);
+        });
+
+        listItem.appendChild(link);
+        productList.appendChild(listItem);
+    }
+});
 
 // Utiliza un bucle para iterar a través de los productos.
 // Por cada producto, crea un elemento <li> y un enlace <a>.
@@ -34,5 +32,3 @@ document.addEventListener("DOMContentLoaded", function () {
 // deberás almacenar el ID del producto en el localStorage y redireccionar a "product-info.html".
 
 // Agrega el enlace al elemento <li> y agrega el <li> a la lista de productos.
-
-});
